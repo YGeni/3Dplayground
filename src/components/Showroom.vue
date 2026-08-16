@@ -439,99 +439,99 @@ const updateVideoPlaybackRate = () => {
   }
 }
 
-// 背景音乐对象
-let backgroundMusic = null
+// // 背景音乐对象
+// let backgroundMusic = null
 
 // 初始化背景音乐
-const initBackgroundMusic = () => {
-  if (backgroundMusic) return
+// const initBackgroundMusic = () => {
+//   if (backgroundMusic) return
   
-  console.log('Initializing background music...')
+//   console.log('Initializing background music...')
   
-  backgroundMusic = new Audio()
-  backgroundMusic.src = '/music/MI.ogg'
-  backgroundMusic.loop = true
-  backgroundMusic.volume = 0.3
-  backgroundMusic.muted = true // 初始静音
+//   backgroundMusic = new Audio()
+//   backgroundMusic.src = '/music/MI.ogg'
+//   backgroundMusic.loop = true
+//   backgroundMusic.volume = 0.3
+//   backgroundMusic.muted = true // 初始静音
   
-  // 添加事件监听器
-  backgroundMusic.addEventListener('loadedmetadata', () => {
-    console.log('Audio metadata loaded, duration:', backgroundMusic.duration)
-  })
+//   // 添加事件监听器
+//   backgroundMusic.addEventListener('loadedmetadata', () => {
+//     console.log('Audio metadata loaded, duration:', backgroundMusic.duration)
+//   })
   
-  backgroundMusic.addEventListener('canplaythrough', () => {
-    console.log('Audio can play through')
-    // 音频加载完成后立即尝试静音播放（获取播放权限）
-    if (backgroundMusic && backgroundMusic.paused) {
-      backgroundMusic.play().then(() => {
-        console.log('Background music started muted')
-      }).catch(e => {
-        console.log('Cannot play muted audio:', e)
-      })
-    }
-  })
+//   backgroundMusic.addEventListener('canplaythrough', () => {
+//     console.log('Audio can play through')
+//     // 音频加载完成后立即尝试静音播放（获取播放权限）
+//     if (backgroundMusic && backgroundMusic.paused) {
+//       backgroundMusic.play().then(() => {
+//         console.log('Background music started muted')
+//       }).catch(e => {
+//         console.log('Cannot play muted audio:', e)
+//       })
+//     }
+//   })
   
-  backgroundMusic.addEventListener('error', (e) => {
-    console.error('Audio error:', e)
-    console.error('Error code:', e.target.error?.code)
-    console.error('Error message:', e.target.error?.message)
-  })
+//   backgroundMusic.addEventListener('error', (e) => {
+//     console.error('Audio error:', e)
+//     console.error('Error code:', e.target.error?.code)
+//     console.error('Error message:', e.target.error?.message)
+//   })
   
-  backgroundMusic.addEventListener('loadeddata', () => {
-    console.log('Audio data loaded')
-  })
+//   backgroundMusic.addEventListener('loadeddata', () => {
+//     console.log('Audio data loaded')
+//   })
   
-  // 尝试加载
-  backgroundMusic.load()
-  console.log('Audio element created and loading...')
-}
+//   // 尝试加载
+//   backgroundMusic.load()
+//   console.log('Audio element created and loading...')
+// }
 
-// 取消静音播放背景音乐
-const unmuteBackgroundMusic = () => {
-  console.log('Unmuting background music...')
+// // 取消静音播放背景音乐
+// const unmuteBackgroundMusic = () => {
+//   console.log('Unmuting background music...')
   
-  if (!backgroundMusic) {
-    initBackgroundMusic()
-    // 如果刚创建，需要先播放
-    backgroundMusic.play().then(() => {
-      backgroundMusic.muted = false
-      console.log('Background music unmuted')
-    }).catch(e => {
-      console.error('Failed to play and unmute:', e)
-    })
-    return
-  }
+//   if (!backgroundMusic) {
+//     initBackgroundMusic()
+//     // 如果刚创建，需要先播放
+//     backgroundMusic.play().then(() => {
+//       backgroundMusic.muted = false
+//       console.log('Background music unmuted')
+//     }).catch(e => {
+//       console.error('Failed to play and unmute:', e)
+//     })
+//     return
+//   }
   
-  // 如果已经在播放，直接取消静音
-  if (!backgroundMusic.paused) {
-    backgroundMusic.muted = false
-    console.log('Background music unmuted')
-  } else {
-    // 如果暂停了，先播放再取消静音
-    backgroundMusic.play().then(() => {
-      backgroundMusic.muted = false
-      console.log('Background music started and unmuted')
-    }).catch(e => {
-      console.error('Failed to play:', e)
-    })
-  }
-}
+//   // 如果已经在播放，直接取消静音
+//   if (!backgroundMusic.paused) {
+//     backgroundMusic.muted = false
+//     console.log('Background music unmuted')
+//   } else {
+//     // 如果暂停了，先播放再取消静音
+//     backgroundMusic.play().then(() => {
+//       backgroundMusic.muted = false
+//       console.log('Background music started and unmuted')
+//     }).catch(e => {
+//       console.error('Failed to play:', e)
+//     })
+//   }
+// }
 
-// 播放背景音乐
-const playBackgroundMusic = () => {
-  unmuteBackgroundMusic()
-}
+// // 播放背景音乐
+// const playBackgroundMusic = () => {
+//   unmuteBackgroundMusic()
+// }
 
-// 预加载音频（在视频播放时调用）
-const preloadBackgroundMusic = () => {
-  console.log('Preloading background music...')
-  initBackgroundMusic()
-}
+// // 预加载音频（在视频播放时调用）
+// const preloadBackgroundMusic = () => {
+//   console.log('Preloading background music...')
+//   initBackgroundMusic()
+// }
 
-// 视频开始播放时预加载音频
-const onVideoPlaying = () => {
-  preloadBackgroundMusic()
-}
+// // 视频开始播放时预加载音频
+// const onVideoPlaying = () => {
+//   preloadBackgroundMusic()
+// }
 
 // 视频结束处理
 const onVideoEnded = () => {
@@ -860,9 +860,9 @@ const createCornerLines = () => {
   
   // 为高度线添加1440mm标注
   const heightLabel = createLabel('1440mm', new THREE.Vector3(0, 0, 0))
-  heightLabel.position.x = carPosition.x - length/2 - 0.3
-  heightLabel.position.y = carPosition.y + height/2
-  heightLabel.position.z = carPosition.z + width/2
+  heightLabel.position.x = carPosition.x - length/2 - 0.6
+  heightLabel.position.y = carPosition.y + height/2 - 0.3
+  heightLabel.position.z = carPosition.z + width/2 - 0.3
   scene.add(heightLabel)
   
   // 为长度线添加4997mm标注
@@ -1549,8 +1549,8 @@ const handleMouseDown = (event) => {
   if (loading.value) return
   if (!carModel) return
   
-  // 第一次用户交互时播放背景音乐
-  playBackgroundMusic()
+  // // 第一次用户交互时播放背景音乐
+  // playBackgroundMusic()
   
   // 重置长按标记
   isLongPressTriggered = false
@@ -1621,8 +1621,8 @@ const handleTouchStart = (event) => {
   if (loading.value) return
   if (!carModel) return
   
-  // 第一次用户交互时播放背景音乐
-  playBackgroundMusic()
+  // // 第一次用户交互时播放背景音乐
+  // playBackgroundMusic()
   
   // 记录触摸起始位置
   const touch = event.touches[0]
